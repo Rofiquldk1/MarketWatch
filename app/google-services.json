@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1061502451959",
+    "project_id": "marketwatchsystem",
+    "storage_bucket": "marketwatchsystem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061502451959:android:e38ed54f7837cbace693f2",
+        "android_client_info": {
+          "package_name": "com.example.marketwatchsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061502451959-3rcvh8r746ob5816l6dk91c86l1io704.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiAo2PohhleVWIYepus3xFOcDM1zg3YtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061502451959-3rcvh8r746ob5816l6dk91c86l1io704.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

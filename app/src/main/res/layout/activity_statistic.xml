@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SubmitModifyActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minHeight="?actionBarSize"
+            android:padding="20dp"
+            android:text="Create Model Test"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="200dp">
+        <TextView
+            android:id="@+id/select_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Department"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+        <Spinner
+            android:id="@+id/spinner_select_sub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/dept_name"/>
+        <TextView
+            android:id="@+id/select_topic2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Select Topic"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+        <Spinner
+            android:id="@+id/spinner_select_topic2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/dept_name"/>
+        <TextView
+            android:id="@+id/select_topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Select Topic"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+        <Spinner
+            android:id="@+id/spinner_select_topic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/dept_name"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="Add"
+            android:textSize="13sp"
+            android:background="@drawable/bk_button"/>
+    </LinearLayout>
+
+
+</LinearLayout>

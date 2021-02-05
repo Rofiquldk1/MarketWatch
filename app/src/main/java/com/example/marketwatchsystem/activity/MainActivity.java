@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.marketwatchsystem.Model.UserType;
 import com.example.marketwatchsystem.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -16,12 +17,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = getIntent();
-        if(intent.getStringExtra("type").equals("Admin")){
+
+        if(UserType.getUserTypeInstance().getType().equals("Admin")){
             findViewById(R.id.relativeLayout2).setVisibility(View.GONE);
             findViewById(R.id.relativeLayout1).setVisibility(View.VISIBLE);
         }
-        else  if(intent.getStringExtra("type").equals("NonAdmin")){
+        else  if(UserType.getUserTypeInstance().getType().equals("NonAdmin")){
             findViewById(R.id.relativeLayout1).setVisibility(View.GONE);
             findViewById(R.id.relativeLayout2).setVisibility(View.VISIBLE);
         }

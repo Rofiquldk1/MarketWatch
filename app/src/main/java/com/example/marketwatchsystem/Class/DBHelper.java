@@ -13,6 +13,8 @@ import java.util.HashMap;
 
 public class DBHelper extends SQLiteOpenHelper {
 
+    private int localPrice=0,internationalPrice=0,supply=0,demand=0,
+            importedPrice=0,importedMoney=0,depositeMoney=0;
     public static final String DATABASE_NAME = "MyDBName.db";
 
     public static final String TABLE_NAME_DISTRIBUTE_INFO = "DistibuteInfo";
@@ -288,18 +290,45 @@ public class DBHelper extends SQLiteOpenHelper {
         return array_list;
     }
 
-    public ArrayList<String> getAllCotacts() {
-        ArrayList<String> array_list = new ArrayList<String>();
 
-        //hp = new HashMap();
+    public String getMessage(String productCode) {
+
+        final String MY_QUERY = "SELECT Agri.supply,Agri.demand,Tcb.loaclPrice,Tcb.internationalPrice,Nbr.price,Cci.importedPrice,Cci.depositePrice FROM Agri INNER JOIN Tcb ON Agri.productCode=Tcb.productCode  INNER JOIN Nbr ON Tcb.productCode=Nbr.productCode INNER JOIN Cci ON Cci.productCode = Nbr.productCode WHERE Agri.productCode=?";
+
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from Agri", null );
+        Cursor res =  db.rawQuery( MY_QUERY, new String[]{String.valueOf(productCode)} );
         res.moveToFirst();
 
-        while(res.isAfterLast() == false){
-            array_list.add(res.getString(res.getColumnIndex(AGRI_COLUMN_CODE)));
-            res.moveToNext();
+        supply = Integer.valueOf(res.getString(res.getColumnIndex(AGRI_COLUMN_SUPPLY)));
+        demand = Integer.valueOf(res.getString(res.getColumnIndex(AGRI_COLUMN_DEMAND)));
+        importedPrice = Integer.valueOf(res.getString(res.getColumnIndex(NBR_COLUMN_PRICE)));
+        localPrice = Integer.valueOf(res.getString(res.getColumnIndex(TCB_COLUMN_LOCAL_PRICE)));
+        internationalPrice = Integer.valueOf(res.getString(res.getColumnIndex(TCB_COLUMN_INTER_PRICE)));
+        importedMoney = Integer.valueOf(res.getString(res.getColumnIndex(CCI_COLUMN_IMPORTED_PRICE)));
+        depositeMoney = Integer.valueOf(res.getString(res.getColumnIndex(CCI_COLUMN_DEPOSITE_PRICE)));
+
+        if(localPrice-internationalPrice>=10){
+            if(supply-demand>=0){
+                return "Inconsistency arise in local market warehouse";
+            }
+            else{
+               if(localPrice-importedPrice>=10){
+                   if(importedMoney>depositeMoney){
+                       return "Inconsistency arise by importer";
+                   }
+                   else{
+                      return "Inconsistency arise in local market warehouse";
+                   }
+               }
+               else{
+                   return "Everything is ok";
+               }
+            }
         }
-        return array_list;
+        else{
+            return "Everything is ok";
+        }
     }
+
+
 }

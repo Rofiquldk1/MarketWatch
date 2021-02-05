@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.marketwatchsystem.Model.Builder;
 import com.example.marketwatchsystem.Class.DBHelper;
+import com.example.marketwatchsystem.Model.Channel;
 import com.example.marketwatchsystem.R;
 import com.example.marketwatchsystem.Model.SendInfo;
 import com.google.android.material.textfield.TextInputEditText;
@@ -28,6 +29,17 @@ public class DistributeInfoActivity extends AppCompatActivity implements View.On
         init();
         btn_send.setOnClickListener(this);
 
+        /*Channel ch = new Channel();
+        ch.subscribe(AgriculturalDeptActivity.getActivityInstance());
+        ch.subscribe(sb2);
+        ch.subscribe(sb3);
+
+
+        sb.setCh(ch);
+        sb2.setCh(ch);
+        sb3.setCh(ch);*/
+
+
     }
 
 
@@ -41,11 +53,13 @@ public class DistributeInfoActivity extends AppCompatActivity implements View.On
     @Override
     public void onClick(View view) {
         if(view.getId()==R.id.btn_send){
-            SendInfo si = new Builder(edit_text_product_name.getText().toString(),edit_text_product_code.getText().toString(),this).Build();
+            SendInfo si = new Builder(edit_text_product_name.getText().toString(),edit_text_product_code.getText().toString(),this).
+                    setDept(spinner_select_dept.toString()).Build();
 
             if(si.send()){
                 Toast.makeText(getApplicationContext(), "done",
                         Toast.LENGTH_SHORT).show();
+
             } else{
                 Toast.makeText(getApplicationContext(), "not done",
                         Toast.LENGTH_SHORT).show();

@@ -21,12 +21,14 @@ public class CCIEDeptActivity extends AppCompatActivity implements InsertData {
     private Button btn_add,btn_update;
     private Spinner spinner_select_prd,spinner_select_prdCd;
     private DBHelper mydb ;
+    public static CCIEDeptActivity INSTANCE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_c_c_i_e_dept);
         mydb = new DBHelper(this);
+        INSTANCE = this;
         init();
 
         ArrayAdapter<String> productName =new ArrayAdapter<String>(CCIEDeptActivity.this,android.R.layout.simple_spinner_item,
@@ -60,6 +62,11 @@ public class CCIEDeptActivity extends AppCompatActivity implements InsertData {
         else  if(intent.getStringExtra("type").equals("update")){
             btn_add.setVisibility(View.GONE);
         }
+    }
+
+    public static CCIEDeptActivity getActivityInstance()
+    {
+        return INSTANCE;
     }
 
     @Override

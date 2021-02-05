@@ -33,7 +33,7 @@ public class ActionActivity extends AppCompatActivity {
 
         for(int i=0 ; i<productName.size() ; i++){
             ProductInfo productInfo = new ProductInfo(
-                    productName.get(i),productCode.get(i),"msg "+i
+                    productName.get(i),productCode.get(i),mydb.getMessage(String.valueOf(productCode.get(i)))
             );
             products.add(productInfo);
         }

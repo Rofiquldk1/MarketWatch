@@ -13,21 +13,25 @@ import android.widget.Toast;
 
 import com.example.marketwatchsystem.Class.DBHelper;
 import com.example.marketwatchsystem.Interface.InsertData;
+import com.example.marketwatchsystem.Interface.Observer;
+import com.example.marketwatchsystem.Model.Channel;
 import com.example.marketwatchsystem.R;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class AgriculturalDeptActivity extends AppCompatActivity implements InsertData {
+public class AgriculturalDeptActivity extends AppCompatActivity implements InsertData, Observer {
     private TextInputEditText edit_text_supply, edit_text_demand,
             edit_text_source, edit_text_production;
     private Button btn_add,btn_update;
     private Spinner spinner_select_prd,spinner_select_prdCd;
     private DBHelper mydb ;
+    public static AgriculturalDeptActivity INSTANCE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agricultural_dept);
         mydb = new DBHelper(this);
+        INSTANCE = this;
         init();
 
         Log.d("Names",mydb.getAllProductNames().toString());
@@ -66,16 +70,19 @@ public class AgriculturalDeptActivity extends AppCompatActivity implements Inser
         }
     }
 
+    public static AgriculturalDeptActivity getActivityInstance()
+    {
+        return INSTANCE;
+    }
+
     @Override
     public void addDataIntoDb() {
         if(mydb.insertAgri(spinner_select_prd.getSelectedItem().toString(),spinner_select_prdCd.getSelectedItem().toString(),
                 edit_text_supply.getText().toString(),edit_text_demand.getText().toString(),edit_text_source.getText().toString(),
                 edit_text_production.getText().toString())){
-            Toast.makeText(getApplicationContext(), "done",
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "done", Toast.LENGTH_SHORT).show();
         } else{
-            Toast.makeText(getApplicationContext(), "not done",
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "not done", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -84,11 +91,9 @@ public class AgriculturalDeptActivity extends AppCompatActivity implements Inser
         if(mydb.updateAgri(spinner_select_prd.getSelectedItem().toString(),spinner_select_prdCd.getSelectedItem().toString(),
                 edit_text_supply.getText().toString(),edit_text_demand.getText().toString(),edit_text_source.getText().toString(),
                 edit_text_production.getText().toString())){
-            Toast.makeText(getApplicationContext(), "done",
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "done", Toast.LENGTH_SHORT).show();
         } else{
-            Toast.makeText(getApplicationContext(), "not done",
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "not done", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -103,5 +108,25 @@ public class AgriculturalDeptActivity extends AppCompatActivity implements Inser
         edit_text_demand = findViewById(R.id.edit_text_demand);
         edit_text_source = findViewById(R.id.edit_text_source);
         edit_text_production = findViewById(R.id.edit_text_prduction);
+    }
+
+    @Override
+    public void setCh(Channel ch) {
+
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public void setName(String name) {
+
+    }
+
+    @Override
+    public void update() {
+        Toast.makeText(AgriculturalDeptActivity.this,"New Product added",Toast.LENGTH_LONG).show();
     }
 }

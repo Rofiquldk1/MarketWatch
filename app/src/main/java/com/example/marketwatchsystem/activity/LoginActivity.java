@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.marketwatchsystem.Class.DBHelper;
+import com.example.marketwatchsystem.Model.UserType;
 import com.example.marketwatchsystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,7 +27,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class LoginActivity extends AppCompatActivity {
 
     private ProgressDialog loadingBar;
-
     private Button LoginButton, PhoneLoginButton;
     private EditText UserEmail, UserPassword;
     private TextView NeedNewAccountLink;
@@ -165,8 +166,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void SendUserToMainActivity()
     {
+        UserType.getUserTypeInstance().setType(type);
         Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-        mainIntent.putExtra("type",type);
         startActivity(mainIntent);
         finish();
     }

@@ -37,7 +37,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, int position) {
         holder.name.setText(products.get(position).getProductName().toString());
-        holder.code.setText(products.get(position).getProductCode().toString());
         holder.message.setText(products.get(position).getMessage().toString());
     }
 
@@ -48,12 +47,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name, code,message;
+        TextView name,message;
         public ViewHolder(View view) {
             super(view);
 
             name = view.findViewById(R.id.text_name);
-            code = view.findViewById(R.id.text_code);
             message = view.findViewById(R.id.text_msg);
         }
     }

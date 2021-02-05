@@ -20,12 +20,14 @@ public class NBRDeptActivity extends AppCompatActivity implements InsertData {
     private Button btn_add,btn_update;
     private Spinner spinner_select_prd,spinner_select_prdCd;
     private DBHelper mydb ;
+    public static NBRDeptActivity INSTANCE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_n_b_r_dept);
         mydb = new DBHelper(this);
+        INSTANCE = this;
         init();
 
         ArrayAdapter<String> productName =new ArrayAdapter<String>(NBRDeptActivity.this,android.R.layout.simple_spinner_item,
@@ -59,6 +61,11 @@ public class NBRDeptActivity extends AppCompatActivity implements InsertData {
         else  if(intent.getStringExtra("type").equals("update")){
             btn_add.setVisibility(View.GONE);
         }
+    }
+
+    public static NBRDeptActivity getActivityInstance()
+    {
+        return INSTANCE;
     }
 
     @Override

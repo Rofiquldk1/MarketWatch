@@ -20,12 +20,14 @@ public class TCBDeptActivity extends AppCompatActivity implements InsertData {
     private Button btn_add,btn_update;
     private Spinner spinner_select_prd,spinner_select_prdCd;
     private DBHelper mydb ;
+    public static TCBDeptActivity INSTANCE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_t_c_b_dept);
         mydb = new DBHelper(this);
+        INSTANCE = this;
         init();
 
         ArrayAdapter<String> productName =new ArrayAdapter<String>(TCBDeptActivity.this,android.R.layout.simple_spinner_item,
@@ -55,10 +57,16 @@ public class TCBDeptActivity extends AppCompatActivity implements InsertData {
         Intent intent = getIntent();
         if(intent.getStringExtra("type").equals("add")){
             btn_update.setVisibility(View.GONE);
+            Toast.makeText(this,"",Toast.LENGTH_LONG).show();
         }
         else  if(intent.getStringExtra("type").equals("update")){
             btn_add.setVisibility(View.GONE);
         }
+    }
+
+    public static TCBDeptActivity getActivityInstance()
+    {
+        return INSTANCE;
     }
 
     @Override
